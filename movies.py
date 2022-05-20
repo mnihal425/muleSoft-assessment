@@ -38,25 +38,34 @@ def displayActor(actorName):
     with conn:
         c.execute('SELECT * FROM MOVIES WHERE ACTOR_NAME = (:actorName)',{'actorName':actorName})
         allMovies = c.fetchall()
-        print('Movies the actor has acted in: ')
-        for movie in allMovies:
-            print('Movie name: ',movie[0])
+        if allMovies == []:
+            print('No entry of such actor found in the database')
+        else:
+            print('Movies the actor has acted in: ')
+            for movie in allMovies:
+                print('Movie name: ',movie[0])
 
 def displayActress(actressName):
     with conn:
         c.execute('SELECT * FROM MOVIES WHERE ACTRESS_NAME = (:actressName)',{'actressName':actressName})
         allMovies = c.fetchall()
-        print('Movies the actress has acted in: ')
-        for movie in allMovies:
-            print('Movie name: ',movie[0])
+        if allMovies == []:
+            print("No entry of such actress found in the database")
+        else: 
+            print('Movies the actress has acted in: ')
+            for movie in allMovies:
+                print('Movie name: ',movie[0])
 
 def displayDirector(directorName):
     with conn:
         c.execute('SELECT * FROM MOVIES WHERE DIRECTOR_NAME = (:directorName)',{'directorName':directorName})
         allMovies = c.fetchall()
-        print('Movies the director has directed: ')
-        for movie in allMovies:
-            print('Movie name: ',movie[0])
+        if allMovies == []:
+            print('No entry of such director found in the database')
+        else:
+            print('Movies the director has directed: ')
+            for movie in allMovies:
+                print('Movie name: ',movie[0])
 
 conn.commit()
 
