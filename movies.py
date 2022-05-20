@@ -68,6 +68,7 @@ def displayDirector(directorName):
                 print('Movie name: ',movie[0])
 
 conn.commit()
+conn.close()
 
 while True:
     print('\n-------Movie Database-------')
