@@ -3,6 +3,8 @@ import sqlite3
 conn = sqlite3.connect('Movies.db')
 
 c = conn.cursor()
+
+
 #CREATION OF MOVIES TABLE
 # c.execute("""
 #     CREATE TABLE MOVIES(
@@ -20,7 +22,7 @@ def insertData():
     movieYear = int(input('Enter the year the movie was released: '))
     with conn:
         c.execute("""INSERT INTO MOVIES VALUES 
-        (:movieName, :actorName, :actressName, :directorName, :movieName)
+        (:movieName, :actorName, :actressName, :directorName, :movieYear)
         """,{'movieName': movieName, 'actorName': actorName, 'actressName': actressName, 'directorName': directorName, 'movieYear': movieYear})
 
 def displayData():
@@ -32,7 +34,7 @@ def displayData():
             print('Lead actor: '+str(movie[1]))
             print('Lead actress: '+str(movie[2]))
             print('Director: '+str(movie[3]))
-            print('Year of release: '+str(movie[4]))
+            print('Year of release: '+str(movie[4])+'\n')
 
 def displayActor(actorName):
     with conn:
@@ -68,7 +70,7 @@ def displayDirector(directorName):
                 print('Movie name: ',movie[0])
 
 conn.commit()
-conn.close()
+
 
 while True:
     print('\n-------Movie Database-------')
