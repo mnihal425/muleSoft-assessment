@@ -5,20 +5,21 @@ conn = sqlite3.connect('Movies.db')
 c = conn.cursor()
 
 
+
 #CREATION OF MOVIES TABLE
-# c.execute("""
-#     CREATE TABLE MOVIES(
-#         MOVIE_NAME TEXT PRIMARY KEY,
-#         ACTOR_NAME TEXT,
-#         ACTRESS_NAME,
-#         DIRECTOR_NAME,
-#         YEAR_OF_RELEASE INTEGER)""")
+c.execute("""
+    CREATE TABLE MOVIES(
+        MOVIE_NAME TEXT PRIMARY KEY,
+        ACTOR_NAME TEXT,
+        ACTRESS_NAME,
+        DIRECTOR_NAME,
+        YEAR_OF_RELEASE INTEGER)""")
 
 def insertData():
-    movieName = input('Enter the name of the movie: ')
-    actorName = input('Enter the name of the lead actor: ')
-    actressName = input('Enter the name of the lead actress: ')
-    directorName = input('Enter the name of the director: ')
+    movieName = input('Enter the name of the movie: ').lower()
+    actorName = input('Enter the name of the lead actor: ').lower()
+    actressName = input('Enter the name of the lead actress: ').lower()
+    directorName = input('Enter the name of the director: ').lower()
     movieYear = int(input('Enter the year the movie was released: '))
     with conn:
         c.execute("""INSERT INTO MOVIES VALUES 
@@ -88,15 +89,15 @@ while True:
     elif op == 2:
         displayData()
     elif op == 3:
-        actorName = input('Enter the name of the actor: ')
+        actorName = input('Enter the name of the actor: ').lower()
         displayActor(actorName)
     elif op == 4:
-        actressName = input('Enter the name of the actress: ')
+        actressName = input('Enter the name of the actress: ').lower()
         displayActress(actressName)
     elif op == 5:
-        directorName = input('Enter the name of the director: ')
+        directorName = input('Enter the name of the director: ').lower()
         displayDirector(directorName)
     elif op == 6:
         break
         
-
+conn.close()
